@@ -1,33 +1,144 @@
-Enter<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل Manhwa Red</title>
+    <title>Manhwa Red - بوابتك لعالم المانجا</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #121212; color: white; padding: 50px 20px; margin: 0; }
-        .app-icon { width: 120px; height: 120px; background: #000; border-radius: 25px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .app-icon span { color: #1E90FF; font-size: 40px; font-weight: bold; }
-        h1 { margin: 10px 0; font-size: 28px; }
-        .version { color: #888; margin-bottom: 40px; font-size: 18px; }
-        .btn { display: inline-block; padding: 15px 50px; background: #1E90FF; color: white; text-decoration: none; border-radius: 30px; font-size: 20px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4); }
-        .btn:hover { background: #0056b3; transform: scale(1.05); }
-        .info { margin-top: 50px; color: #666; font-size: 14px; line-height: 1.6; }
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --primary-yellow: #ffcc00;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+
+        /* الشريط العلوي */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(10, 10, 10, 0.9); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
+        .logo { font-size: 24px; font-weight: 900; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--primary-yellow); }
+        .menu-btn { background: none; border: 1px solid #333; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .menu-btn:hover { border-color: var(--primary-yellow); }
+
+        /* القسم الرئيسي (Hero Section) */
+        .hero { text-align: center; padding: 80px 20px 40px; position: relative; }
+        .badge { display: inline-block; border: 1px solid var(--primary-yellow); color: var(--primary-yellow); padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-bottom: 20px; background: rgba(255, 204, 0, 0.05); }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero h1 span { color: var(--primary-yellow); }
+        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 650px; margin: 0 auto 40px; }
+        
+        .version-info { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; display: block; }
+
+        /* أزرار التحميل */
+        .download-buttons { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
+        .btn-primary { background: var(--primary-yellow); color: #000; padding: 18px; border-radius: 12px; font-size: 1.2rem; font-weight: bold; text-decoration: none; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3); }
+        .btn-primary:hover { background: #e6b800; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 204, 0, 0.5); }
+        .btn-secondary { background: #1f1f1f; color: white; padding: 18px; border-radius: 12px; font-size: 1.2rem; font-weight: bold; text-decoration: none; border: 1px solid #333; transition: 0.3s; }
+        .btn-secondary:hover { background: #2a2a2a; border-color: #555; }
+
+        .note { margin-top: 20px; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* قسم لقطات الشاشة */
+        .screenshots { padding: 60px 20px; text-align: center; background: linear-gradient(to bottom, var(--bg-dark), #111); }
+        .mockup-container { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+        
+        /* إطار الهاتف */
+        .phone-mockup { width: 280px; height: 580px; border: 12px solid #222; border-radius: 40px; position: relative; background: #000; overflow: hidden; box-shadow: 0 20px 50px rgba(255, 204, 0, 0.1); transition: 0.4s; }
+        .phone-mockup:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(255, 204, 0, 0.2); }
+        .phone-mockup::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #222; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+        .phone-mockup img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* قسم المميزات */
+        .features { padding: 80px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .features h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .features h2 span { color: var(--primary-yellow); }
+        .features > p { color: var(--text-muted); margin-bottom: 50px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: right; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: var(--primary-yellow); transform: translateY(-5px); }
+        .card h3 { color: var(--primary-yellow); margin-bottom: 10px; font-size: 1.3rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* تذييل الصفحة */
+        footer { text-align: center; padding: 30px; border-top: 1px solid #222; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .phone-mockup { width: 240px; height: 500px; }
+            header { padding: 15px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="app-icon"><span>MR</span></div>
-    
-    <h1>Manhwa Red</h1>
-    <div class="version">الإصدار 1.92</div>
-    
-    <!-- الرابط يشير إلى مستودعك القديم حيث يوجد التطبيق -->
-    <a href="https://github.com/benazzamih107-cmyk/mnhatest/releases/download/v1.92/app-release.apk" class="btn">تحميل التطبيق (APK)</a>
-    
-    <div class="info">
-        <p>اضغط على الزر أعلاه لتحميل وتثبيت التطبيق.</p>
-    </div>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="logo"><span>MR</span> Manhwa Red</div>
+        <button class="menu-btn">☰</button>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero">
+        <div class="badge">✦ لعشاق المانجا والمانهوا — متوفر للأندرويد</div>
+        <h1>عالم <span>القصص المصورة</span><br>بين يديك.</h1>
+        <p>بوابتك الشاملة لعالم المانجا والمانهوا. اقرأ آلاف الفصول من مصادر متعددة وبأعلى جودة، مجاناً وبتجربة سلسة وبدون إعلانات مزعجة.</p>
+        
+        <span class="version-info">الإصدار الأحدث: 1.92 • Android فقط</span>
+        
+        <div class="download-buttons">
+            <!-- تم تحديث الرابط ليكون رابط الـ Release الخاص بك -->
+            <a href="https://github.com/benazzamih107-cmyk/manhwa-dawlend/releases/download/v1.92/app-release.apk" class="btn-primary">
+                ↓ تحميل مباشر (APK)
+            </a>
+            <a href="#" class="btn-secondary">
+                ↓ ميديا فاير (قريباً)
+            </a>
+        </div>
+        <p class="note">قم بتفعيل (تثبيت التطبيقات من مصادر مجهولة) في الإعدادات قبل تثبيت التطبيق.</p>
+    </section>
+
+    <!-- قسم لقطات الشاشة -->
+    <section class="screenshots">
+        <div class="mockup-container">
+            <div class="phone-mockup">
+                <img src="screen1.jpg" alt="لقطة شاشة 1">
+            </div>
+            <div class="phone-mockup">
+                <img src="screen2.jpg" alt="لقطة شاشة 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section class="features">
+        <h2>كل الذي <span>تحبه</span> في المانجا</h2>
+        <p>تجربة قراءة مصممة خصيصاً لعشاق القصص المصورة</p>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🌐 مصادر متعددة</h3>
+                <p>تصفح المانجا والمانهوا من مختلف المصادر في واجهة واحدة، دون الحاجة للتنقل بين المواقع.</p>
+            </div>
+            <div class="card">
+                <h3>💾 حفظ تلقائي</h3>
+                <p>لا تفقد مكانك أبداً. التطبيق يحفظ آخر فصل وصفحة قرأتها لتعود إليها فوراً.</p>
+            </div>
+            <div class="card">
+                <h3>🌙 وضع ليلي مريح</h3>
+                <p>تصميم داكن يريح عينيك أثناء القراءة الطويلة في أي وقت من اليوم.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل -->
+    <footer>
+        <p>© 2024 Manhwa Red. جميع الحقوق محفوظة.</p>
+    </footer>
 
 </body>
 </html>
